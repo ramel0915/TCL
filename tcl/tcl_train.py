@@ -8,12 +8,13 @@ from datetime import datetime
 import os.path
 import time
 import numpy as np
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 from tcl import tcl
 from subfunc.showdata import *
 
-FLAGS = tf.app.flags.FLAGS
+FLAGS = tf.compat.v1.flags.FLAGS
 
 # =============================================================
 # =============================================================
@@ -69,8 +70,8 @@ def train(data,
         global_step = tf.Variable(0, trainable=False)
 
         # Data holder
-        data_holder = tf.placeholder(tf.float32, shape=[None, data.shape[0]], name='data')
-        label_holder = tf.placeholder(tf.int32, shape=[None], name='label')
+        data_holder = tf.compat.v1.placeholder(tf.float32, shape=[None, data.shape[0]], name='data')
+        label_holder = tf.compat.v1.placeholder(tf.int32, shape=[None], name='label')
 
         # Build a Graph that computes the logits predictions from the
         # inference model.
