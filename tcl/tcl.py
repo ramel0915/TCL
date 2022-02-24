@@ -6,7 +6,10 @@
 
 import os
 import sys
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+
+import tensorflow as tf2
 
 FLAGS = tf.app.flags.FLAGS
 tf.app.flags.DEFINE_string('FILTER_COLLECTION', 'filter',
@@ -14,7 +17,7 @@ tf.app.flags.DEFINE_string('FILTER_COLLECTION', 'filter',
 
 # =============================================================
 # =============================================================
-def _variable_init(name, shape, wd, initializer = tf.contrib.layers.variance_scaling_initializer(), trainable = True, collections=None):
+def _variable_init(name, shape, wd, initializer = tf2.keras.initializers.variance_scaling(), trainable = True, collections=None):
     """Helper to create an initialized Variable with weight decay.
 
     Args:
