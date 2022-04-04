@@ -9,13 +9,13 @@
 import sys
 import copy
 from sklearn.metrics import confusion_matrix
-import tensorflow as tf
 import numpy as np
 import scipy as sp
 
 from subfunc.showdata import *
 from subfunc.munkres import Munkres
-
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
 
 # =============================================================
 # =============================================================

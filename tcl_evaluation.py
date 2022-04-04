@@ -9,13 +9,17 @@
 import os
 import numpy as np
 import pickle
-import tensorflow as tf
+import time
 
 from subfunc.generate_artificial_data import generate_artificial_data
 from subfunc.preprocessing import pca
 from subfunc.showdata import *
 from tcl import tcl, tcl_eval
 from sklearn.decomposition import FastICA
+import tensorflow.compat.v1 as tf
+tf.disable_v2_behavior()
+from subfunc.showdata import showmat
+
 
 FLAGS = tf.app.flags.FLAGS
 
@@ -59,8 +63,8 @@ sensor, source, label = generate_artificial_data(num_comp=num_comp,
                                                  random_seed=random_seed)
 
 # Preprocessing -----------------------------------------------
-sensor, pca_parm = pca(sensor, num_comp, params = pca_parm)
 
+sensor, pca_parm = pca(sensor, num_comp, params = pca_parm)
 
 # Evaluate model ----------------------------------------------
 with tf.Graph().as_default() as g:

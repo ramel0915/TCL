@@ -16,6 +16,7 @@ import shutil
 from subfunc.generate_artificial_data import generate_artificial_data
 from subfunc.preprocessing import pca
 from tcl.tcl_train import train
+from subfunc.showdata import showmat
 
 
 # Parameters ==================================================
@@ -44,7 +45,7 @@ moving_average_decay = 0.999 # moving average decay of variables to be saved
 checkpoint_steps = 1e5 # interval to save checkpoint
 
 # for MLR initialization
-max_steps_init = int(7e4) # number of iterations (mini-batches) for initializing only MLR
+max_steps_init = int(7e4) #default value : int(7e4), number of iterations (mini-batches) for initializing only MLR
 decay_steps_init = int(5e4) # decay steps for initializing only MLR
 
 # Other -------------------------------------------------------
@@ -78,7 +79,6 @@ sensor, source, label = generate_artificial_data(num_comp=num_comp,
 
 # Preprocessing -----------------------------------------------
 sensor, pca_parm = pca(sensor, num_comp=num_comp)
-
 
 # Train model (only MLR) --------------------------------------
 train(sensor,
